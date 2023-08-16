@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+:root {
+  --bg-color: #e0e4e7;
+  --bg-mode-color: #abb3b6;
+  --toogle-shadow-color: rgba(0, 0, 0, 0.363);
+  --toogle-circle-color: #f3f4f6;
+  --main-text: "Roboto", sans-serif;
+  --clear-color: #feb92d;
+  --symbol-color: #f5efe3;
+  --number-color: #f3f4f6;
+  --operator-color: #e0d4e8;
+  --del-color: #e4e5e7;
+  --del-input-color: #3e494d;
+  --equalto-color: #9f2dfa;
+  --number-shadow: drop-shadow(-4px -3px 7px rgba(255, 255, 255, 0.7)) drop-shadow(3px 4px 4px #c6c6c6);
+  --symbol-shadow: drop-shadow(-4px -3px 7px rgba(255, 255, 255, 0.7)) drop-shadow(3px 4px 4px #dac9a7);
+  --del-shadow: drop-shadow(-4px -3px 7px rgba(255, 255, 255, 0.7)) drop-shadow(3px 4px 4px #c6c6c6);
+  --op-shadow: drop-shadow(-4px -3px 7px rgba(255, 255, 255, 0.7)) drop-shadow(3px 4px 4px #c6b1d7);
+  --calc-body: #f0f0f0;
+  --calc-body-shadow: 20px 20px 70px -27px rgba(0, 0, 0, 0.15);
+  --input-color: #5e6b74;
+}
+
+.darkmode {
+  --bg-color: #282c2f;
+  --bg-mode-color: #3d4142;
+  --togle-shadow-color: 3px -1px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    4px -2px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    3px 1px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  --toogle-circle-color: #a8abb2;
+  --main-text: "Roboto", sans-serif;
+  --clear-color: #feb92d;
+  --symbol-color: #f5efe3;
+  --number-color: #f3f4f6;
+  --operator-color: #e0d4e8;
+  --del-color: #e4e5e7;
+  --del-input-color: #3e494d;
+  --equalto-color: #9f2dfa;
+  --number-shadow: drop-shadow(-3px -3px 3px rgba(87, 90, 94, 0.70)) drop-shadow(1px 3px 5px #0F1011);
+  --symbol-shadow: drop-shadow(-3px -3px 3px rgba(87, 90, 94, 0.70)) drop-shadow(1px 3px 3px #1B1A19);
+  --del-shadow: drop-shadow(-3px -3px 3px rgba(87, 90, 94, 0.70)) drop-shadow(1px 3px 5px #0F1011);
+  --op-shadow: drop-shadow(-3px -3px 3px rgba(87, 90, 94, 0.70)) drop-shadow(1px 3px 5px #0F1011);
+  --equalto-shadow:-3px -3px 5px 0px rgba(87, 90, 94, 0.70), 1px 3px 10px 0px #0F1011;
+  --calc-body: #282c2f;  
+  --input-color: #D2D2D2;
+  --calc-body-shadow: 20px 20px 70px -27px rgba(0, 0, 0, 0.15), 20px 20px 70px 5px rgba(0, 0, 0, 0.25);
+}
+
+body {
+  background-color: var(--bg-color);
+  font-family: var(--main-text);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-body {
+  border-radius: 30px;
+  background: var(--calc-body);
+  box-shadow:var(--calc-body-shadow);
+  display: flex;
+  padding: 20px 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.display-mode {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.labelinput {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  /* position: relative; */
+}
+
+.labelinput input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+label {
+  width: 50px;
+  height: 26px;
+  position: relative;
+  display: block;
+  border-radius: 50px;
+  cursor: pointer;
+  background: var(--bg-mode-color);
+  box-shadow: -5px 5px 10px var(--toogle-shadow-color) inset;
+  transition: all 0.3s ease-in-out;
+}
+
+label::after {
+  content: " ";
+  width: 22px;
+  height: 22px;
+  background: var(--toogle-circle-color);
+  filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.25));
+  position: absolute;
+  border-radius: 50px;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked+label {
+  background: #3d4142;
+  box-shadow: 3px -1px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    4px -2px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    3px 1px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+input:checked+label::after {
+  left: 25px;
+  transform: translateX(5%);
+  background: #a8abb2;
+}
+
+/* label:active::after{
+    width: 60px;
+} */
+
+.svg {
+  position: absolute;
+  z-index: 5;
+}
+
+.sun {
+  top: 5px;
+  left: 5px;
+}
+
+label svg.moon {
+  right: 6px;
+  top: 7px;
+  fill: #d1d2d2;
+  transition: all 0.1s ease-in-out;
+}
+
+input:checked+label svg.moon {
+  fill: #f3f5f6;
+}
+
+.mode-p {
+  color: rgba(132, 136, 137, 0.6);
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.display {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 245px;
+  height: 150px;
+  justify-content: flex-end;
+  align-items: center;
+  border: none;
+  outline: none;
+  background: var(--calc-body);
+  text-align: right;
+  font-size: 55px;
+  font-weight: 400;
+  color: var(--input-color);
+}
+
+#modetext {
+  font-size: 10px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.equalto {
+  grid-area: 5/4/7/5;
+  /* padding: 20px 10px; */
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  background: var(--equalto-color);
+  box-shadow: var(--equalto-shadow);
+}
+
+.equalto p {
+  color: white;
+}
+
+.operators {
+  border: none;
+  border-radius: 50px;
+  width: 55px;
+  height: 52px;
+  cursor: pointer;
+}
+
+.operator-index {
+  font-size: 25px;
+}
+
+.clear {
+  background-color: var(--clear-color);
+}
+
+.clear p {
+  color: white !important;
+}
+
+.digits {
+  background: var(--number-color);
+  filter: var(--number-shadow);
+}
+
+.del-contain {
+  background-color: var(--del-color);
+  filter: var(--del-shadow) ;
+}
+
+.del {
+  stroke: var(--del-input-color);
+}
+
+.digits p {
+  color: #646f73;
+}
+
+.symbols {
+  background: var(--symbol-color);
+  filter:var(--symbol-shadow) ;
+}
+
+.symbols p {
+  color: #b89140;
+}
+
+.op {
+  background: var(--operator-color);
+  filter: var(--op-shadow);
+}
+
+.op p {
+  color: #4d147c;
+}
